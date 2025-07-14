@@ -1,0 +1,38 @@
+
+:root {
+  --primary-background: #1A1D21;
+  --primary-text: #D1D2D3;
+  --active-item-background: #1164A3;
+  --notification-badge: #CD2553;
+}
+
+body {
+  font-family: 'Lato', sans-serif !important;
+}
+
+/* Add more specific overrides below */
+
+/* Example of hiding Snap Map and Spotlight */
+[aria-label="Map"], [aria-label="Spotlight"] {
+    display: none !important;
+}
+
+/* Example of restyling the sidebar */
+.left-sidebar-container {
+    background-color: var(--primary-background);
+    color: var(--primary-text);
+}
+
+/* Example of restyling chat items */
+.chat-item {
+    border-bottom: 1px solid #333;
+}
+
+.chat-item:hover {
+    background-color: var(--active-item-background);
+}
+
+/* Example of restyling avatars */
+.avatar {
+    border-radius: 4px !important;
+}
