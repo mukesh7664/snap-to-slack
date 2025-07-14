@@ -8,7 +8,7 @@ chrome.action.onClicked.addListener((tab) => {
     const newIsEnabledState = !result.isEnabled;
     chrome.storage.local.set({ isEnabled: newIsEnabledState }, () => {
       updateIcon(newIsEnabledState);
-      if (tab.url.startsWith('https://web.snapchat.com')) {
+      if (tab.url.startsWith('https://snapchat.com')) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
           files: ['content.js']
@@ -19,6 +19,18 @@ chrome.action.onClicked.addListener((tab) => {
 });
 
 function updateIcon(isEnabled) {
-  const iconPath = isEnabled ? 'icons/slack-128.png' : 'icons/default-128.png';
-  chrome.action.setIcon({ path: iconPath });
+  const iconPaths = isEnabled
+    ? {
+        '16': 'icons/slack-128.png',
+        '32': 'icons/slack-128.png',
+        '48': 'icons/slack-128.png',
+        '128': 'icons/slack-128.png'
+      }
+    : {
+        '16': 'icons/default-16.png',
+        '32': 'icons/default-32.png',
+        '48': 'icons/default-48.png',
+        '128': 'icons/default-128.png'
+      };
+  chrome.action.setIcon({ path: iconPaths });
 }

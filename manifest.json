@@ -10,7 +10,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://web.snapchat.com/*"],
+      "matches": ["*://snapchat.com/*"],
       "js": ["content.js"]
     }
   ],
@@ -32,7 +32,7 @@
   "web_accessible_resources": [
     {
       "resources": ["slack-theme.css"],
-      "matches": ["*://web.snapchat.com/*"]
+      "matches": ["*://snapchat.com/*"]
     }
   ]
 }

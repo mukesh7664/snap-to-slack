@@ -2,19 +2,18 @@
 const SLACK_FAVICON_URL = 'https://a.slack-edge.com/80588/img/icons/favicon-32.png';
 
 function setSlackFavicon() {
-  let favicon = document.querySelector("link[rel*='icon']");
-  if (favicon) {
-    favicon.href = SLACK_FAVICON_URL;
-  } else {
-    favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.href = SLACK_FAVICON_URL;
-    document.head.appendChild(favicon);
-  }
+  // Remove all existing favicon links
+  document.querySelectorAll('link[rel*="icon"]').forEach(el => el.remove());
+  // Add Slack favicon
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png';
+  link.href = 'https://a.slack-edge.com/80588/img/icons/favicon-32.png';
+  document.head.appendChild(link);
 }
 
 function setSlackTitle() {
-  document.title = 'Slack';
+  document.title = 'Slack | #general | Mukesh Soni'; // You can customize this as needed
 }
 
 function injectCss() {
