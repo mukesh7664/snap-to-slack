@@ -1,4 +1,3 @@
-
 {
   "manifest_version": 3,
   "name": "Snap-to-Slack",
@@ -10,8 +9,9 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://snapchat.com/*"],
-      "js": ["content.js"]
+      "matches": ["*://www.snapchat.com/web/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
     }
   ],
   "action": {
@@ -31,8 +31,8 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["slack-theme.css"],
-      "matches": ["*://snapchat.com/*"]
+      "resources": ["slack-theme.css", "icons/slack-128.png"],
+      "matches": ["*://www.snapchat.com/*"]
     }
   ]
 }

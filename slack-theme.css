@@ -1,38 +1,186 @@
-
+/* Slack-to-Slack: Deep Reskin */
 :root {
-  --primary-background: #1A1D21;
+  --primary-background: #1A1D21; /* Slack dark sidebar */
   --primary-text: #D1D2D3;
+  --main-background: #FFFFFF; /* Slack main area */
   --active-item-background: #1164A3;
   --notification-badge: #CD2553;
+  --slack-font: 'Lato', 'Segoe UI', Arial, sans-serif;
+  --hover-background: rgba(255, 255, 255, 0.06);
 }
 
-body {
-  font-family: 'Lato', sans-serif !important;
+body, html {
+  font-family: var(--slack-font) !important;
+  background: var(--primary-background) !important;
+  color: var(--primary-text) !important;
 }
 
-/* Add more specific overrides below */
-
-/* Example of hiding Snap Map and Spotlight */
-[aria-label="Map"], [aria-label="Spotlight"] {
-    display: none !important;
+/* Force dark background on everything */
+body *, html *, div, main, section, aside, nav {
+  background-color: var(--primary-background) !important;
 }
 
-/* Example of restyling the sidebar */
-.left-sidebar-container {
-    background-color: var(--primary-background);
-    color: var(--primary-text);
+/* Main container - split into sidebar and content */
+#root, #app, [id*="app"], [class*="app"] {
+  background: var(--primary-background) !important;
 }
 
-/* Example of restyling chat items */
-.chat-item {
-    border-bottom: 1px solid #333;
+/* Sidebar (left) - the entire left panel - VERY AGGRESSIVE */
+body > div, body > div > div, body > div > div > div,
+[class*="left"], [class*="sidebar"], [class*="Left"], [class*="Sidebar"],
+div[style*="flex"] > div:first-child {
+  background: var(--primary-background) !important;
+  background-color: var(--primary-background) !important;
+  color: var(--primary-text) !important;
+  border-right: 1px solid #3a3a3a !important;
 }
 
-.chat-item:hover {
-    background-color: var(--active-item-background);
+/* Main chat area */
+.BL7do, .main-chat-container {
+  background: var(--main-background) !important;
+  color: #222 !important;
 }
 
-/* Example of restyling avatars */
-.avatar {
-    border-radius: 4px !important;
+/* Hide Snap Map, Spotlight, Camera, and other non-Slack features */
+[aria-label="Map"], [aria-label="Spotlight"], [aria-label="Camera"], .wHvEy, .xGUM5 {
+  display: none !important;
+}
+
+/* Chat items as Slack channels - broader selectors */
+/* Target all conversation list items */
+[class*="conversation"], [class*="chat-item"], [class*="list-item"],
+ul > li, ul li a, ul li div[role="button"],
+div[role="list"] > div, div[role="listitem"] {
+  border-radius: 4px !important;
+  background: transparent !important;
+  color: var(--primary-text) !important;
+  margin: 1px 8px !important;
+  padding: 4px 8px !important;
+  font-size: 15px !important;
+  transition: background 0.15s ease-in-out !important;
+}
+
+/* Hover states for chat items */
+[class*="conversation"]:hover, [class*="chat-item"]:hover, [class*="list-item"]:hover,
+ul > li:hover, ul li a:hover, ul li div[role="button"]:hover,
+div[role="list"] > div:hover, div[role="listitem"]:hover {
+  background: var(--hover-background) !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+
+/* Active/selected chat item */
+[class*="active"], [aria-selected="true"], [aria-current="true"] {
+  background: var(--active-item-background) !important;
+  color: #fff !important;
+}
+
+/* Contact/Channel names styling */
+/* Try to add # before names */
+[class*="name"], [class*="title"], h2, h3, h4 {
+  color: var(--primary-text) !important;
+  font-weight: 600 !important;
+}
+
+/* Avatars - make them square like Slack (reverted from hiding) */
+.LPo2u, .avatar, .a9PIa, .mxwVA, .KL4Vx, ._lSs1,
+[class*="avatar"], [class*="Avatar"] {
+  border-radius: 4px !important;
+}
+
+/* Hide install app banner */
+.PrUqm {
+  display: none !important;
+}
+
+/* Slack-style search bar */
+input[type="text"], input[type="search"], [role="searchbox"],
+[class*="search"], [placeholder*="Search"], [placeholder*="search"] {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--primary-text) !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  font-family: var(--slack-font) !important;
+  padding: 8px 12px !important;
+}
+
+input[type="text"]:focus, input[type="search"]:focus, [role="searchbox"]:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Top header area */
+header, [role="banner"], [class*="header"], [class*="Header"],
+div[style*="position: fixed"], div[style*="position:fixed"] {
+  background: var(--primary-background) !important;
+  color: var(--primary-text) !important;
+  border-bottom: 1px solid #3a3a3a !important;
+}
+
+/* Notification badge */
+.sCl5U {
+  background: var(--notification-badge) !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  font-size: 11px !important;
+  padding: 2px 6px !important;
+}
+
+/* Remove yellow highlights and Snapchat branding */
+* {
+  box-shadow: none !important;
+}
+
+/* Hide Snapchat logo in header */
+[aria-label*="Snapchat"], [alt*="Snapchat"], svg[class*="logo"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Additional text color fixes - FORCE ALL TEXT TO BE LIGHT */
+* {
+  color: var(--primary-text) !important;
+}
+
+/* Specific overrides for visible text */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, label {
+  color: var(--primary-text) !important;
+}
+
+/* Status indicators (Delivered, Received, etc.) */
+[class*="status"], [class*="Status"], span:contains("Delivered"),
+span:contains("Received"), span:contains("Opened") {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 13px !important;
+}
+
+/* Buttons in header should be light colored */
+button, [role="button"] {
+  color: var(--primary-text) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 4px !important;
+  border: none !important;
+}
+
+button:hover, [role="button"]:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Scrollbars - Slack style */
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-background) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 4px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
 }
